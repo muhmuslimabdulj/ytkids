@@ -10,7 +10,9 @@
 
             <div class="basis-[30%] mt-5 md:mt-0">
                 @foreach ($videos as $video)
-                    <x-watch.video-list :vidio="$video" />
+                    @if ($video->video_code !== $video_code)
+                        <x-watch.video-list :vidio="$video" />
+                    @endif
                 @endforeach
                 {{-- <div class="flex justify-between mb-[8px]">
                     <a href="" class="basis-[49%]"> <img class="w-full" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="" srcset=""></a>
