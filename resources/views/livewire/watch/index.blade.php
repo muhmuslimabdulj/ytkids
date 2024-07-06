@@ -8,22 +8,14 @@
 
             <x-watch.video-player :vidio="$video" :code="$video_code" />
 
-            <div class="basis-[30%] mt-5 md:mt-0">
+            <div class="basis-[19%] mt-5 md:mt-0">
                 @foreach ($videos as $video)
                     @if ($video->video_code !== $video_code)
-                        <x-watch.video-list :vidio="$video" />
+                        <x-watch.video-list wire:key="{{ $video->id }}" :vidio="$video" />
                     @endif
                 @endforeach
-                {{-- <div class="flex justify-between mb-[8px]">
-                    <a href="" class="basis-[49%]"> <img class="w-full" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="" srcset=""></a>
-                    <div class="basis-[49%]">
-                        <a href="" class="text-sm font-semibold">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, nostrum?</a>
-                        <p class="text-sm">Avalin Vines</p>
-                        <p class="text-sm">1.1M Views</p>
-                    </div>
-                </div> --}}
-
             </div>
+
         </div>
     </div>
 </div>
