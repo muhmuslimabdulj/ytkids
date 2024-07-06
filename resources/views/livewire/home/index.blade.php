@@ -5,10 +5,9 @@
     {{-- Video --}}
     <main class="grid grid-cols-1 lg:grid-cols-4 gap-4 px-1 lg:px-16">
         @foreach ($videos as $video)
-            <x-home.video :video="$video" />
+            <x-home.video wire:key="{{ $video->id }}" :video="$video" />
         @endforeach
     </main>
-
 </div>
 @script
     <script>
