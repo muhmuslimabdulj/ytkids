@@ -26,7 +26,7 @@
             <label
                 class="w-full input input-bordered flex items-center relative items-center pe-0 rounded-full border-none bg-zinc-100"
                 id="searchBar">
-                <input id="search-bar" type="text" placeholder="Search" wire:model="search"
+                <input id="search-bar" class="w-[90%]" type="text" placeholder="Search" wire:model="search"
                     wire:keydown.enter="searchVid" />
                 <button wire:click="searchVid" class="btn bg-[#D90B17] rounded-e-full max-w-min absolute right-0">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25"
