@@ -3,7 +3,6 @@
 namespace App\Livewire\Watch;
 
 use App\Models\Video;
-use Illuminate\Http\Request;
 use Livewire\Component;
 
 class Index extends Component
@@ -15,6 +14,13 @@ class Index extends Component
     public $channel;
 
     public $videos;
+
+    public $search = "";
+
+    public function searchVid()
+    {
+        return redirect(url("/videos?search=$this->search"));
+    }
 
     public function mount($code)
     {
