@@ -22,6 +22,11 @@ class Index extends Component
         $this->videos = Video::query()->where('judul', 'like', '%' . $this->search . '%')->inRandomOrder()->get();
     }
 
+    public function searchDirect()
+    {
+        $this->redirect("/videos?search=$this->search", navigate: true);
+    }
+
     public function render()
     {
         if ($this->search) {
