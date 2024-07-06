@@ -19,7 +19,7 @@ class Index extends Component
 
     public function searchVid()
     {
-        return redirect(url("/videos?search=$this->search"));
+        $this->redirect("/videos?search=$this->search");
     }
 
     public function mount($code)
