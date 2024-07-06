@@ -1,6 +1,6 @@
-<a href="{{ url('/watch/' . $video->video_code) }}"
+<a wire:navigate href="{{ url('/watch/' . $video->video_code) }}"
     class="card rounded-md grid grid-cols-subgrid w-1/4 mt-5 transition ease-in-out cursor-pointer card-compact bg-base-100 shadow-md hover:scale-105">
-    <figure><img src="https://img.youtube.com/vi/{{ $video->video_code }}/0.jpg" alt="Shoes" />
+    <figure><img src="https://img.youtube.com/vi/{{ $video->video_code }}/0.jpg" alt="{{ $video->judul }}" />
     </figure>
     <div class="card-body flex flex-row items-center">
         {{-- <img class="w-10 h-10 rounded-full" src="{{ asset('/storage/' . $video->channel->foto_profile) }}"
