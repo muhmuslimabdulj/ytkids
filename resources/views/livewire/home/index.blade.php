@@ -7,6 +7,11 @@
         @foreach ($videos as $video)
             <x-home.video wire:key="{{ $video->id }}" :video="$video" />
         @endforeach
+        <div x-intersect.full="$wire.loadMore()" class="p-4">
+            <div wire:loading wire:target="loadMore" class="loading-indicator">
+                Loading more posts...
+            </div>
+        </div>
     </main>
 </div>
 @script
