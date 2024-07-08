@@ -14,6 +14,8 @@ class Index extends Component
 
     public $channels;
 
+    public $selectedChannel;
+
     #[Url]
     public $search = "";
 
@@ -24,17 +26,32 @@ class Index extends Component
 
     public function searchDirect()
     {
-        $this->redirect("/videos?search=$this->search", navigate: true);
+        $this->redirect("/videos?search=$this->search", navigate: false);
+    }
+
+    public function filterVideoByChannelId($channelId)
+    {
+        $this->selectedChannel = $channelId;
+        $this->videos = Video::query()->where('channel_id', $channelId)->get();
+    }
+
+    public function showAllVideos()
+    {
+        $this->selectedChannel = "";
+        $this->videos = Video::query()->inRandomOrder()->get();
+    }
+
+    public function mount()
+    {
+        $this->channels = Channel::get();
+        $this->videos = Video::query()->inRandomOrder()->get();
     }
 
     public function render()
     {
         if ($this->search) {
             $this->searchVid();
-        } else {
-            $this->videos = Video::query()->inRandomOrder()->get();
         }
-        $this->channels = Channel::get();
         return view('livewire.home.index');
     }
 }

@@ -26,8 +26,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
         </button>
-        <div class="max-w-full lg:w-full mt-5 p-2 overflow-x-auto hide-scrollbar flex flex-row" id="avatarCarousel">
-            <div class="text-center mx-1 cursor-pointer group">
+        <div class="max-w-full lg:w-full mt-5 p-1 overflow-x-auto hide-scrollbar flex flex-row" id="avatarCarousel">
+            <div class="text-center mx-1 p-1 cursor-pointer group" wire:click="showAllVideos()">
                 <div
                     class="relative inline-block rounded-full  bg-blue-700 group-hover:scale-105 transition ease-in-out">
                     <img class="w-20 h-20 bg-white border rounded-full" src="{{ asset('/img/home.png') }}"
@@ -38,7 +38,7 @@
                     Beranda</p>
             </div>
             @foreach ($channels as $channel)
-                <x-home.channel wire:key="{{ $channel->id }}" :channel="$channel" />
+                <x-home.channel wire:key="{{ $channel->id }}" :channel="$channel" :selectedChannel="$selectedChannel" />
             @endforeach
         </div>
         <button id="rightArrow" class="bg-white border shadow-md text-slate-500 hover:scale-105 p-2 rounded-full">

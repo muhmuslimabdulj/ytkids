@@ -1,6 +1,6 @@
 <div>
     {{-- Navbar --}}
-    <x-home.navbar :channels="$channels" />
+    <x-home.navbar :channels="$channels" :selectedChannel="$selectedChannel" />
 
     {{-- Video --}}
     <main class="grid grid-cols-1 lg:grid-cols-4 gap-4 px-1 lg:px-16">
