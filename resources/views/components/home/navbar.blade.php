@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100 mt-2 flex flex-col sticky top-0 z-10">
+<div class="navbar bg-base-100 mt-2 drop-shadow-md flex flex-col sticky top-0 z-10">
     <div class="w-full flex justify-between">
         <a href="{{ url()->route('home') }}" class=" btn-circle w-16 me-2 lg:me-0 lg:-mt-4 lg:ms-10">
             <img alt="YTFilt" src="{{ asset('logo/ytfilt.png') }}" />
