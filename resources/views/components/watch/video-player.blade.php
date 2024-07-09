@@ -1,5 +1,5 @@
 <div class="basis-[80%]">
-    <div class="px-40 py-2 bg-gray-200">
+    <div class="md:px-40 md:py-2 bg-gray-200">
         <div class="border-none" id="player" data-plyr-provider="youtube" data-plyr-embed-id="{{ $code }}"></div>
     </div>
     <h3 class="font-semibold mt-5 text-2xl">{{ $vidio->judul }}</h3>
