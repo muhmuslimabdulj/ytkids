@@ -2,7 +2,7 @@
     <div @scroll.window.throttle.1000ms="open = false"
         class="navbar bg-base-100 px-5 py-2 drop-shadow-lg sticky z-10 top-0 shadow-md">
         <div class="navbar-start">
-            <a class="me-5" href="{{ url()->previous() }}">
+            <a class="me-5 hidden md:block" href="{{ url()->previous() }}">
                 <img>
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                     viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
