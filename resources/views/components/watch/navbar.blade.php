@@ -1,6 +1,6 @@
 <div x-data="{ open: false }">
     <div @scroll.window.throttle.1000ms="open = false"
-        class="navbar bg-base-100 px-5 py-2 drop-shadow-lg sticky z-10 top-0 shadow-md">
+        class="navbar bg-base-100 px-5 py-2 drop-shadow-sm sticky z-10 top-0 shadow-md">
         <div class="navbar-start">
             <a class="me-5 hidden md:block" href="{{ url()->previous() }}">
                 <img>
