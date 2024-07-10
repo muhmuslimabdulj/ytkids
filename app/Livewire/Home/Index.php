@@ -17,7 +17,9 @@ class Index extends Component
     public $selectedChannel;
 
     #[Url]
-    public $search = "";
+    public $search;
+
+    protected $queryString = ['search' => ['except' => '']];
 
     public function searchVid()
     {
@@ -31,12 +33,14 @@ class Index extends Component
 
     public function filterVideoByChannelId($channelId)
     {
+        $this->search = "";
         $this->selectedChannel = $channelId;
         $this->videos = Video::query()->where('channel_id', $channelId)->get();
     }
 
     public function showAllVideos()
     {
+        $this->search = "";
         $this->selectedChannel = "";
         $this->videos = Video::query()->inRandomOrder()->get();
     }

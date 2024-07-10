@@ -6,7 +6,7 @@
         <label
             class="w-full lg:w-[50%] mt-3 input input-bordered relative items-center pe-0 rounded-full hover:scale-110 transition ease-in-out hover:shadow-lg border-none bg-zinc-100 lg:-ms-24"
             id="searchBar">
-            <input type="text" placeholder="Search" wire:model="search" wire:keydown.enter="searchDirect"
+            <input type="text" placeholder="Search" wire:model="search" type="search" wire:keydown.enter="searchDirect"
                 class="border-3 border-gray-600 w-[90%] h-11" />
             <button wire:click="searchDirect" class="btn bg-[#D90B17] rounded-e-full max-w-min absolute right-0">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25"
