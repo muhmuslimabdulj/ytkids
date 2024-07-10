@@ -4,6 +4,8 @@ namespace App\Livewire\Home;
 
 use App\Models\Channel;
 use App\Models\Video;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -15,15 +17,22 @@ class Index extends Component
     public $channels;
 
     public $selectedChannel;
+    public int $perPage = 8;
 
     #[Url]
     public $search;
 
     protected $queryString = ['search' => ['except' => '']];
 
+
+    public function loadMore()
+    {
+        $this->perPage += 4;
+    }
+
     public function searchVid()
     {
-        $this->videos = Video::query()->where('judul', 'like', '%' . $this->search . '%')->inRandomOrder()->get();
+        $this->videos = Video::query()->where('judul', 'like', '%' . $this->search . '%')->latest()->take($this->perPage)->get();
     }
 
     public function searchDirect()
@@ -42,13 +51,17 @@ class Index extends Component
     {
         $this->search = "";
         $this->selectedChannel = "";
-        $this->videos = Video::query()->inRandomOrder()->get();
+        $this->videos = Video::query()->latest()->get();
     }
 
     public function mount()
     {
         $this->channels = Channel::get();
-        $this->videos = Video::query()->inRandomOrder()->get();
+        $this->videos = Video::query()->latest()->take($this->perPage)->get();
+    }
+
+    public function hasMorePage() {
+        return Video::count() > $this->perPage;
     }
 
     public function render()
