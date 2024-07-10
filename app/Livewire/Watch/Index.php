@@ -27,7 +27,7 @@ class Index extends Component
         $this->video_code = $code;
         $this->video = Video::query()->where('video_code', $this->video_code)->first();
         $this->channel = $this->video->channel;
-        $this->videos = Video::query()->where('channel_id', $this->channel->id)->take($this->perPage)->get();
+        $this->videos = Video::query()->where('channel_id', $this->channel->id)->get();
     }
 
     public function render()
