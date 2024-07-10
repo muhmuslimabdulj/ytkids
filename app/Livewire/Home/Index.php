@@ -32,6 +32,7 @@ class Index extends Component
 
     public function searchVid()
     {
+        $this->resetPerPage();
         $this->videos = Video::query()->where('judul', 'like', '%' . $this->search . '%')->latest()->take($this->perPage)->get();
     }
 
@@ -44,31 +45,43 @@ class Index extends Component
     {
         $this->search = "";
         $this->selectedChannel = $channelId;
-        $this->videos = Video::query()->where('channel_id', $channelId)->get();
+        $this->resetPerPage();
     }
 
     public function showAllVideos()
     {
         $this->search = "";
         $this->selectedChannel = "";
-        $this->videos = Video::query()->latest()->get();
+        $this->resetPerPage();
     }
 
     public function mount()
     {
         $this->channels = Channel::get();
-        $this->videos = Video::query()->latest()->take($this->perPage)->get();
     }
 
-    public function hasMorePage() {
+    public function hasMorePage()
+    {
         return Video::count() > $this->perPage;
+    }
+
+    public function resetPerPage()
+    {
+        if ($this->perPage != 8) $this->perPage = 8;
     }
 
     public function render()
     {
         if ($this->search) {
             $this->searchVid();
+        } else {
+            if ($this->selectedChannel) {
+                $this->videos = Video::query()->where('channel_id', $this->selectedChannel)->take($this->perPage)->get();
+            } else {
+                $this->videos = Video::query()->latest()->take($this->perPage)->get();
+            }
         }
+
         return view('livewire.home.index');
     }
 }
