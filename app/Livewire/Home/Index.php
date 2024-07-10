@@ -37,6 +37,10 @@ class Index extends Component
         $this->redirect("/videos?search=$this->search", navigate: false);
     }
 
+    public function hasMorePage() {
+        return Video::count() > $this->perPage;
+    }
+
     public function render()
     {
         if ($this->search) {

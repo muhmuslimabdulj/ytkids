@@ -14,11 +14,13 @@
                         <x-watch.video-list wire:key="{{ $video->id }}" :vidio="$video" />
                     @endif
                 @endforeach
-                <div x-intersect.full="$wire.loadMore()" class="p-4">
-                    <div wire:loading wire:target="loadMore" class="loading-indicator">
-                        Loading more posts...
+                @if ($this->hasMorePage())
+                    <div x-intersect.full="$wire.loadMore()" class="p-4">
+                        <div wire:loading wire:target="loadMore" class="loading-indicator">
+                            Loading more videos...
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
 
         </div>
