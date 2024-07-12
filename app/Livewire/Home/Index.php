@@ -24,7 +24,6 @@ class Index extends Component
 
     protected $queryString = ['search' => ['except' => '']];
 
-
     public function loadMore()
     {
         $this->perPage += 4;
@@ -58,6 +57,12 @@ class Index extends Component
     public function mount()
     {
         $this->channels = Channel::get();
+
+        // Ambil seluruh ID video dalam urutan acak
+        $videoIds = Video::query()->inRandomOrder()->pluck('id')->toArray();
+
+        // Simpan urutan ID dalam sesi
+        session(['random_video_ids' => $videoIds]);
     }
 
     public function hasMorePage()
@@ -78,7 +83,15 @@ class Index extends Component
             if ($this->selectedChannel) {
                 $this->videos = Video::query()->where('channel_id', $this->selectedChannel)->take($this->perPage)->get();
             } else {
-                $this->videos = Video::query()->latest()->take($this->perPage)->get();
+                $videoIds = session('random_video_ids', []);
+
+                // Ambil ID video yang sesuai dengan paginasi
+                $pagedVideoIds = array_slice($videoIds, 0, $this->perPage);
+
+                // Ambil video berdasarkan ID yang telah dipaginasikan
+                $this->videos = Video::query()->whereIn('id', $pagedVideoIds)
+                    ->orderByRaw("FIELD(id, " . implode(',', $pagedVideoIds) . ")")
+                    ->get();
             }
         }
 
