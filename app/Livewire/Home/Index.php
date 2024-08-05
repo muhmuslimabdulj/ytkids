@@ -88,10 +88,14 @@ class Index extends Component
                 // Ambil ID video yang sesuai dengan paginasi
                 $pagedVideoIds = array_slice($videoIds, 0, $this->perPage);
 
-                // Ambil video berdasarkan ID yang telah dipaginasikan
-                $this->videos = Video::query()->whereIn('id', $pagedVideoIds)
-                    ->orderByRaw("FIELD(id, " . implode(',', $pagedVideoIds) . ")")
-                    ->get();
+                if (!empty($pagedVideoIds)) {
+                    // Ambil video berdasarkan ID yang telah dipaginasikan
+                    $this->videos = Video::query()->whereIn('id', $pagedVideoIds)
+                        ->orderByRaw("FIELD(id, " . implode(',', $pagedVideoIds) . ")")
+                        ->get();
+                } else {
+                    $this->videos = Video::query()->take($this->perPage)->get();
+                }
             }
         }
 
